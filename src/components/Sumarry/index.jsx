@@ -7,18 +7,25 @@ import Spinner from '../common/Spinner';
 
 const Summary = () => {
   const [liveData, setLiveData] = useState(null);
+  const [mostUpdated, setMostUpdated] = useState(null);
 
   useEffect(() => {
     api.get('live/country/israel')
-      .then(res => setLiveData(res.data));
-  })
+      .then(res => {
+        setLiveData(res.data);
+        setMostUpdated(res.data[res.data.length - 1]);
+      });
+  }, []);
+
 
   return (
-    liveData ? (<Container>
-      <Card cardTitle="Card title">Card content</Card>
-      <Card cardTitle="Card title">Card content</Card>
-      <Card cardTitle="Card title">Card content</Card>
-    </Container>) : <SpinnerContainer><Spinner /></SpinnerContainer>
+    mostUpdated ?
+      <Container>
+        {Object.keys(mostUpdated).map(item => 
+          <Card key={item} cardTitle={item}>{mostUpdated[item]}</Card>
+        )}
+      </Container>
+      : <SpinnerContainer><Spinner /></SpinnerContainer>
   );
 };
 
