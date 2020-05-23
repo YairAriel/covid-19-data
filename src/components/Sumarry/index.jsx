@@ -10,7 +10,7 @@ const Summary = () => {
   const [mostUpdated, setMostUpdated] = useState(null);
 
   useEffect(() => {
-    api.get('live/country/israel')
+    api.get('dayone/country/israel')
       .then(res => {
         setLiveData(res.data);
         setMostUpdated(res.data[res.data.length - 1]);
