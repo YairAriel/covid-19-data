@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 import api from '../../api';
 import Card from './Card';
@@ -10,22 +11,32 @@ const Summary = () => {
   const [mostUpdated, setMostUpdated] = useState(null);
 
   useEffect(() => {
-    api.get('dayone/country/israel')
-      .then(res => {
-        setLiveData(res.data);
-        setMostUpdated(res.data[res.data.length - 1]);
-      });
+    api.get('dayone/country/israel').then((res) => {
+      setLiveData(res.data);
+      setMostUpdated(
+        _.pick(res.data[res.data.length - 1], [
+          'Date',
+          'Active',
+          'Confirmed',
+          'Deaths',
+          'Recovered',
+        ])
+      );
+    });
   }, []);
 
-
-  return (
-    mostUpdated ?
-      <Container>
-        {Object.keys(mostUpdated).map(item => 
-          <Card key={item} cardTitle={item}>{mostUpdated[item]}</Card>
-        )}
-      </Container>
-      : <SpinnerContainer><Spinner /></SpinnerContainer>
+  return mostUpdated ? (
+    <Container>
+      {Object.keys(mostUpdated).map((item) => (
+        <Card key={item} cardTitle={item}>
+          {mostUpdated[item]}
+        </Card>
+      ))}
+    </Container>
+  ) : (
+    <SpinnerContainer>
+      <Spinner />
+    </SpinnerContainer>
   );
 };
 
