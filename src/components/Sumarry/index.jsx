@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import _ from 'lodash';
 
 import api from '../../api';
@@ -29,7 +30,9 @@ const Summary = () => {
     <Container>
       {Object.keys(mostUpdated).map((item) => (
         <Card key={item} cardTitle={item}>
-          {mostUpdated[item]}
+          {item === 'Date'
+            ? moment(mostUpdated[item]).format('DD/MM/YYYY')
+            : mostUpdated[item]}
         </Card>
       ))}
     </Container>
