@@ -3,17 +3,30 @@ import styled from 'styled-components';
 
 const Card = ({cardTitle, children}) => (
   <Wrapper>
-    <h3>{cardTitle}</h3>
-    <div>
+    <Title>{cardTitle}</Title>
+    <Content>
       {children}
-    </div>
+    </Content>
   </Wrapper>
 );
 
 const Wrapper = styled.div`
   display: inline-block;
-  box-shadow: 0 2px 3px #ccc;
-  padding: 0 20px 20px;
+  padding: 0 20px 30px;
+  color: #d9cfcf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h3`
+  letter-spacing: 0.7px;
+  font-size: 22px;
+`;
+
+const Content = styled.p`
+  font-size: 18px;
+  margin: 0;
 `;
 
 export default Card;

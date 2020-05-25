@@ -16,7 +16,6 @@ const Summary = () => {
       setLiveData(res.data);
       setMostUpdated(
         _.pick(res.data[res.data.length - 1], [
-          'Date',
           'Active',
           'Confirmed',
           'Deaths',
@@ -28,13 +27,16 @@ const Summary = () => {
 
   return mostUpdated ? (
     <Container>
-      {Object.keys(mostUpdated).map((item) => (
-        <Card key={item} cardTitle={item}>
-          {item === 'Date'
-            ? moment(mostUpdated[item]).format('DD/MM/YYYY')
-            : mostUpdated[item]}
-        </Card>
-      ))}
+      <SummaryContainer>
+        {Object.keys(mostUpdated).map((item) => (
+          <Card key={item} cardTitle={item}>
+            {/* {item === 'Date'
+              ? moment(mostUpdated[item]).format('DD/MM/YYYY')
+              : mostUpdated[item]} */}
+            {mostUpdated[item]}
+          </Card>
+        ))}
+      </SummaryContainer>
     </Container>
   ) : (
     <SpinnerContainer>
@@ -45,8 +47,18 @@ const Summary = () => {
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  padding-top: 3vw;
 `;
+
+const SummaryContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  background: #a23419;
+  border-radius: 20px;
+  width: 650px;
+  box-shadow: 2px 2px 15px;
+`;  
 
 const SpinnerContainer = styled.div`
   height: 100vh;
