@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Summary from './components/Sumarry';
-import './App.css';
 
 function App() {
   return (
