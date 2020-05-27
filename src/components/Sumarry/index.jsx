@@ -53,10 +53,10 @@ const Container = styled.div`
 
 const SummaryContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   background: #a23419;
   border-radius: 20px;
-  width: 650px;
+  width: 580px;
   box-shadow: 2px 2px 15px;
 `;  
 
