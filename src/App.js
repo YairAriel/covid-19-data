@@ -5,9 +5,9 @@ import Summary from './components/Sumarry';
 
 function App() {
   return (
-    <div className="App">
+    <AppContainer>
       <Summary />
-    </div>
+    </AppContainer>
   );
 }
 
@@ -15,6 +15,10 @@ const AppContainer = styled.div`
   background: #d9cfcf;
   height: 100vh;
   width: 100vw;
+  @media (max-width: 576px) {
+    padding: 0 2vw;
+    width: unset;
+  }
 `;
 
 export default App;

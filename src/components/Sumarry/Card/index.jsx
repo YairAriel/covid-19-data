@@ -21,12 +21,20 @@ const Wrapper = styled.div`
   &:not(:nth-of-type(4)) {
     border-right: 3px solid #d9cfcf;
   }
+  @media (max-width: 576px) {
+    background: #a23419;
+    padding: 15px;
+    margin: 0;
+    &:not(:nth-of-type(4)) {
+      border: none;
+    }
+  }
 `;
 
 const Title = styled.h3`
   letter-spacing: 0.7px;
   font-size: 22px;
-  margin: 15px 0;
+  margin: 0 0 10px;
 `;
 
 const Content = styled.p`

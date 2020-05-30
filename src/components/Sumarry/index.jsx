@@ -58,6 +58,15 @@ const SummaryContainer = styled.div`
   border-radius: 20px;
   width: 580px;
   box-shadow: 2px 2px 15px;
+  @media (max-width: 560px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5vw;
+    width: 100%;
+    background: none;
+    border-radius: unset;
+    box-shadow: none;
+  }
 `;  
 
 const SpinnerContainer = styled.div`
