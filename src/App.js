@@ -12,7 +12,7 @@ function App() {
 }
 
 const AppContainer = styled.div`
-  background: #d9cfcf;
+  background: var(--lilac);
   height: 100vh;
   width: 100vw;
   @media (max-width: 576px) {

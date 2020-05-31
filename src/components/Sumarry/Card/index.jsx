@@ -14,15 +14,15 @@ const Wrapper = styled.div`
   display: inline-block;
   padding: 0 20px;
   margin: 20px 0;
-  color: #d9cfcf;
+  color: var(--lilac);
   display: flex;
   flex-direction: column;
   align-items: center;
   &:not(:nth-of-type(4)) {
-    border-right: 3px solid #d9cfcf;
+    border-right: 3px solid var(--lilac);
   }
   @media (max-width: 576px) {
-    background: #a23419;
+    background: var(--bronze);
     padding: 15px;
     margin: 0;
     &:not(:nth-of-type(4)) {

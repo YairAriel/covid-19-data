@@ -54,7 +54,7 @@ const Container = styled.div`
 const SummaryContainer = styled.div`
   display: flex;
   justify-content: center;
-  background: #a23419;
+  background: var(--bronze);
   border-radius: 20px;
   width: 580px;
   box-shadow: 2px 2px 15px;
