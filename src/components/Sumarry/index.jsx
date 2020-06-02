@@ -20,6 +20,7 @@ const Summary = () => {
           'Confirmed',
           'Deaths',
           'Recovered',
+          'Date',
         ])
       );
     });
@@ -28,14 +29,18 @@ const Summary = () => {
   return mostUpdated ? (
     <Container>
       <SummaryContainer>
-        {Object.keys(mostUpdated).map((item) => (
-          <Card key={item} cardTitle={item}>
-            {/* {item === 'Date'
-              ? moment(mostUpdated[item]).format('DD/MM/YYYY')
-              : mostUpdated[item]} */}
-            {mostUpdated[item]}
-          </Card>
-        ))}
+        <DateViewer>Last Update | {moment(mostUpdated.Date).format('DD/MM/YYYY')}</DateViewer>
+        <CardsContainer>
+        {Object.keys(mostUpdated).map((item) => {
+          if (item !== 'Date') {
+            return (
+              <Card key={item} cardTitle={item}>
+                {mostUpdated[item]}
+              </Card>
+            );
+          }
+        })}
+        </CardsContainer>
       </SummaryContainer>
     </Container>
   ) : (
@@ -52,6 +57,24 @@ const Container = styled.div`
 `;
 
 const SummaryContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 576px) {
+    display: block;
+  }
+`;
+
+const DateViewer = styled.div`
+  background: var(--orange);
+  color: var(--lilac);
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 4vw;
+`
+
+const CardsContainer = styled.div`
   display: flex;
   justify-content: center;
   background: var(--bronze);
@@ -61,13 +84,13 @@ const SummaryContainer = styled.div`
   @media (max-width: 560px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 5vw;
+    grid-gap: 4vw;
     width: 100%;
     background: none;
     border-radius: unset;
     box-shadow: none;
   }
-`;  
+`;
 
 const SpinnerContainer = styled.div`
   height: 100vh;
