@@ -35,7 +35,7 @@ const Summary = () => {
           if (item !== 'Date') {
             return (
               <Card key={item} cardTitle={item}>
-                {mostUpdated[item]}
+                {mostUpdated[item].toLocaleString()}
               </Card>
             );
           }
