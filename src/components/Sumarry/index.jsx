@@ -31,15 +31,15 @@ const Summary = () => {
       <SummaryContainer>
         <DateViewer>Last Update | {moment(mostUpdated.Date).format('DD/MM/YYYY')}</DateViewer>
         <CardsContainer>
-        {Object.keys(mostUpdated).map((item) => {
-          if (item !== 'Date') {
-            return (
-              <Card key={item} cardTitle={item}>
-                {mostUpdated[item].toLocaleString()}
-              </Card>
-            );
-          }
-        })}
+          {Object.keys(mostUpdated).map((item, index) => {
+            if (item !== 'Date') {
+              return (
+                <Card key={item} cardTitle={item} delay={(index + 1) * 400}>
+                  {mostUpdated[item].toLocaleString()}
+                </Card>
+              );
+            }
+          })}
         </CardsContainer>
       </SummaryContainer>
     </Container>
@@ -72,7 +72,7 @@ const DateViewer = styled.div`
   text-align: center;
   padding: 12px;
   margin-bottom: 4vw;
-`
+`;
 
 const CardsContainer = styled.div`
   display: flex;

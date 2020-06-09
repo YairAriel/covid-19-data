@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { RoughNotation } from 'react-rough-notation';
 
-const Card = ({cardTitle, children}) => (
+const Card = ({ cardTitle, children, delay }) => (
   <Wrapper>
     <Title>{cardTitle}</Title>
-    <Content>
-      {children}
-    </Content>
+    <RoughNotation type="underline" animationDelay={delay} show={true}>
+      <Content>{children}</Content>
+    </RoughNotation>
   </Wrapper>
 );
 

@@ -10163,6 +10163,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-rough-notation@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/react-rough-notation/-/react-rough-notation-0.0.11.tgz#692a774c46411ed1182b7edd8d9f5753fa0c290b"
+  integrity sha512-MQ7gfYBS/ECMmmJWwjGQkkN63XSp36m7QvJ/4Riw6zllyrBLIZ8Gz2gA+PUMPmOiHl6tvKxw/xka55jkbDXCrA==
+  dependencies:
+    rough-notation "0.3.1"
+
 react-scripts@3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-3.4.1.tgz#f551298b5c71985cc491b9acf3c8e8c0ae3ada0a"
@@ -10680,6 +10687,11 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+rough-notation@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/rough-notation/-/rough-notation-0.3.1.tgz#6f3865f43b0b63c3118f3be18d4c3267c30b50d3"
+  integrity sha512-WrUTmZa1CxuW2KdghcppZ7WBk7An/ty1bQ5kpYwl5YtXSBCEINa6NO7wx+pViO9TwlMqmIZuRxCJiWtYcIOK0w==
 
 rsvp@^4.8.4:
   version "4.8.5"
