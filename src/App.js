@@ -1,12 +1,24 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import Summary from './components/Sumarry';
 
 function App() {
   return (
-    <div>
+    <AppContainer>
       <Summary />
-    </div>
+    </AppContainer>
   );
 }
+
+const AppContainer = styled.div`
+  background: var(--lilac);
+  height: 100vh;
+  width: 100vw;
+  @media (max-width: 576px) {
+    padding: 0 2vw;
+    width: unset;
+  }
+`;
 
 export default App;
