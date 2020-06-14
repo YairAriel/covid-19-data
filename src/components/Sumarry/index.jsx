@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import moment from 'moment';
 import _ from 'lodash';
 
 import api from '../../api';
 import Card from './Card';
 import Spinner from '../common/Spinner';
+import CountriesDropdown from './CountriesDropdown';
 
 const Summary = () => {
   const [liveData, setLiveData] = useState(null);
   const [mostUpdated, setMostUpdated] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState('israel');
 
   useEffect(() => {
-    api.get('dayone/country/israel').then((res) => {
+    api.get(`dayone/country/${selectedCountry}`).then((res) => {
       setLiveData(res.data);
       setMostUpdated(
         _.pick(res.data[res.data.length - 1], [
@@ -24,7 +26,7 @@ const Summary = () => {
         ])
       );
     });
-  }, []);
+  }, [selectedCountry]);
 
   return mostUpdated ? (
     <Container>
@@ -42,6 +44,7 @@ const Summary = () => {
           })}
         </CardsContainer>
       </SummaryContainer>
+      <CountriesDropdown setSelectedCountry={setSelectedCountry} />
     </Container>
   ) : (
     <SpinnerContainer>
@@ -52,7 +55,8 @@ const Summary = () => {
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding-top: 3vw;
 `;
 
