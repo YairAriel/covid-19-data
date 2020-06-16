@@ -44,7 +44,9 @@ const Summary = () => {
           })}
         </CardsContainer>
       </SummaryContainer>
-      <CountriesDropdown setSelectedCountry={setSelectedCountry} />
+      <CountriesDropdown
+        setSelectedCountry={setSelectedCountry}
+      />
     </Container>
   ) : (
     <SpinnerContainer>
