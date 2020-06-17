@@ -11,6 +11,7 @@ import CountriesDropdown from './CountriesDropdown';
 const Summary = () => {
   const [liveData, setLiveData] = useState(null);
   const [mostUpdated, setMostUpdated] = useState(null);
+  const [countriesList, setCountriesList] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState('israel');
 
   useEffect(() => {
@@ -26,9 +27,10 @@ const Summary = () => {
         ])
       );
     });
+    api.get('countries').then((res) => setCountriesList(res.data));
   }, [selectedCountry]);
 
-  return mostUpdated ? (
+  return mostUpdated && countriesList ? (
     <Container>
       <SummaryContainer>
         <DateViewer>Last Update | {moment(mostUpdated.Date).format('DD/MM/YYYY')}</DateViewer>
@@ -45,7 +47,9 @@ const Summary = () => {
         </CardsContainer>
       </SummaryContainer>
       <CountriesDropdown
+        selectedCountry={selectedCountry}
         setSelectedCountry={setSelectedCountry}
+        countriesList={countriesList}
       />
     </Container>
   ) : (

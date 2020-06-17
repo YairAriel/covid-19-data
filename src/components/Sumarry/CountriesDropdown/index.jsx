@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
 
-const options = [
-  { value: 'israel', label: 'Israel' },
-  { value: 'spain', label: 'Spain' },
-  { value: 'italy', label: 'Italy' },
-];
+import { capitalize } from '../../../utils';
 
 const customStyles = {
   container: () => ({
@@ -23,14 +19,27 @@ const customStyles = {
   }),
 };
 
-const CoutriesDropdown = ({ setSelectedCountry }) => (
-  <Select
-    defaultValue={options[0]}
-    styles={customStyles}
-    options={options}
-    onChange={(selected) => setSelectedCountry(selected.value)}
-  />
-);
+const CoutriesDropdown = ({ selectedCountry, setSelectedCountry, countriesList }) => {
+  const [options, setOptions] = useState(null);
+  useEffect(() => {
+    const optionsArr = [];
+    countriesList.forEach((country) =>
+      optionsArr.push({ value: country.Slug, label: country.Country })
+    );
+    setOptions(optionsArr);
+  }, []);
+  
+  return (
+    options && (
+      <Select
+        defaultValue={{value: selectedCountry, label: capitalize(selectedCountry)}}
+        styles={customStyles}
+        options={options}
+        onChange={(selected) => setSelectedCountry(selected.value)}
+      />
+    )
+  );
+};
 
 const SelectContainer = styled(Select)`
   flex: 1;
