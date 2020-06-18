@@ -26,9 +26,10 @@ const CoutriesDropdown = ({ selectedCountry, setSelectedCountry, countriesList }
     countriesList.forEach((country) =>
       optionsArr.push({ value: country.Slug, label: country.Country })
     );
+    optionsArr.sort((a, b) => a.value.localeCompare(b.value));
     setOptions(optionsArr);
   }, []);
-  
+
   return (
     options && (
       <Select
