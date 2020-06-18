@@ -26,12 +26,14 @@ const Summary = () => {
           'Date',
         ])
       );
-    });
+    })
+    .catch((e) => console.log(e));
     api.get('countries').then((res) => setCountriesList(res.data));
   }, [selectedCountry]);
 
   return mostUpdated && countriesList ? (
     <Container>
+      {!_.isEmpty(mostUpdated) ? (
       <SummaryContainer>
         <DateViewer>Last Update | {moment(mostUpdated.Date).format('DD/MM/YYYY')}</DateViewer>
         <CardsContainer>
@@ -45,7 +47,7 @@ const Summary = () => {
             }
           })}
         </CardsContainer>
-      </SummaryContainer>
+      </SummaryContainer>) : <NoData>No Data</NoData>}
       <CountriesDropdown
         selectedCountry={selectedCountry}
         setSelectedCountry={setSelectedCountry}
@@ -100,6 +102,11 @@ const CardsContainer = styled.div`
     border-radius: unset;
     box-shadow: none;
   }
+`;
+
+const NoData = styled.p`
+  font-size: 36px;
+  color: var(--bronze);
 `;
 
 const SpinnerContainer = styled.div`
