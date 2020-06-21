@@ -33,6 +33,11 @@ const Summary = () => {
 
   return mostUpdated && countriesList ? (
     <Container>
+      <CountriesDropdown
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+        countriesList={countriesList}
+      />
       {!_.isEmpty(mostUpdated) ? (
       <SummaryContainer>
         <DateViewer>Last Update | {moment(mostUpdated.Date).format('DD/MM/YYYY')}</DateViewer>
@@ -48,11 +53,6 @@ const Summary = () => {
           })}
         </CardsContainer>
       </SummaryContainer>) : <NoData>No Data</NoData>}
-      <CountriesDropdown
-        selectedCountry={selectedCountry}
-        setSelectedCountry={setSelectedCountry}
-        countriesList={countriesList}
-      />
     </Container>
   ) : (
     <SpinnerContainer>

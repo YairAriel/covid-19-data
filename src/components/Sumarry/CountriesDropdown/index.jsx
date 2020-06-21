@@ -7,15 +7,32 @@ import { capitalize } from '../../../utils';
 const customStyles = {
   container: () => ({
     width: '100%',
-    marginTop: '3vw',
+    margin: '2vw 0',
     '@media (min-width: 576px)': {
       width: '200px',
     },
   }),
+  control: base => ({
+    ...base,
+    border: '1px solid var(--bronze)',
+    borderRadius: 'none',
+    boxShadow: 'none',
+    background: 'var(--lilac)',
+    cursor: 'pointer',
+    color: 'var(--purple)',
+    fontSize: '18px',
+  }),
   menu: () => ({
     position: 'relative',
     top: '0',
-    border: '1px solid var(--orange)',
+  }),
+  dropdownIndicator: base => ({
+    ...base,
+    color: 'var(--purple)',
+  }),
+  indicatorSeparator: base => ({
+    ...base,
+    background: 'var(--purple)',
   }),
 };
 
