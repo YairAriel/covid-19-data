@@ -25,6 +25,7 @@ const customStyles = {
   menu: () => ({
     position: 'relative',
     top: '0',
+    zIndex: 9,
   }),
   dropdownIndicator: base => ({
     ...base,
