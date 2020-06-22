@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import moment from 'moment';
 import _ from 'lodash';
 
 import api from '../../api';
 import Card from './Card';
 import Spinner from '../common/Spinner';
+import CountriesDropdown from './CountriesDropdown';
 
 const Summary = () => {
   const [liveData, setLiveData] = useState(null);
   const [mostUpdated, setMostUpdated] = useState(null);
+  const [countriesList, setCountriesList] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState('israel');
 
   useEffect(() => {
-    api.get('dayone/country/israel').then((res) => {
+    api.get(`dayone/country/${selectedCountry}`).then((res) => {
       setLiveData(res.data);
       setMostUpdated(
         _.pick(res.data[res.data.length - 1], [
@@ -23,11 +26,19 @@ const Summary = () => {
           'Date',
         ])
       );
-    });
-  }, []);
+    })
+    .catch((e) => console.log(e));
+    api.get('countries').then((res) => setCountriesList(res.data));
+  }, [selectedCountry]);
 
-  return mostUpdated ? (
+  return mostUpdated && countriesList ? (
     <Container>
+      <CountriesDropdown
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+        countriesList={countriesList}
+      />
+      {!_.isEmpty(mostUpdated) ? (
       <SummaryContainer>
         <DateViewer>Last Update | {moment(mostUpdated.Date).format('DD/MM/YYYY')}</DateViewer>
         <CardsContainer>
@@ -41,7 +52,7 @@ const Summary = () => {
             }
           })}
         </CardsContainer>
-      </SummaryContainer>
+      </SummaryContainer>) : <NoData>No Data</NoData>}
     </Container>
   ) : (
     <SpinnerContainer>
@@ -52,7 +63,8 @@ const Summary = () => {
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding-top: 3vw;
 `;
 
@@ -90,6 +102,11 @@ const CardsContainer = styled.div`
     border-radius: unset;
     box-shadow: none;
   }
+`;
+
+const NoData = styled.p`
+  font-size: 36px;
+  color: var(--bronze);
 `;
 
 const SpinnerContainer = styled.div`
